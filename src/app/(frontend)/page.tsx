@@ -3,6 +3,8 @@ import React from 'react'
 import config from '@/payload.config'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })

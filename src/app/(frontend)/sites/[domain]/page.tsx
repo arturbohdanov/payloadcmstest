@@ -3,6 +3,8 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import config from '@/payload.config'
 
+export const dynamic = 'force-dynamic'
+
 export default async function SubdomainPage(props: { params: Promise<{ domain: string }> }) {
   const params = await props.params
   const domain = params.domain
