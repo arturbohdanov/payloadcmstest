@@ -36,35 +36,24 @@ export default function CombinedSitesCheckboxField() {
   }, [])
 
   const handleSiteChange = (siteId: number, checked: boolean) => {
-    let newSites = [...currentSites]
-    let newHome = [...currentHome]
-
     if (checked) {
-      if (!newSites.includes(siteId)) newSites.push(siteId)
+      const newSites = currentSites.includes(siteId) ? currentSites : [...currentSites, siteId]
+      setSitesValue(newSites)
     } else {
-      newSites = newSites.filter(id => id !== siteId)
-      // Automatically uncheck "homepage" if "site" is unchecked
-      newHome = newHome.filter(id => id !== siteId)
+      setSitesValue(currentSites.filter(id => id !== siteId))
+      setHomeValue(currentHome.filter(id => id !== siteId))
     }
-
-    setSitesValue(newSites)
-    setHomeValue(newHome)
   }
 
   const handleHomeChange = (siteId: number, checked: boolean) => {
-    let newSites = [...currentSites]
-    let newHome = [...currentHome]
-
     if (checked) {
-      if (!newHome.includes(siteId)) newHome.push(siteId)
-      // Automatically check "site" if "homepage" is checked
-      if (!newSites.includes(siteId)) newSites.push(siteId) 
+      const newHome = currentHome.includes(siteId) ? currentHome : [...currentHome, siteId]
+      const newSites = currentSites.includes(siteId) ? currentSites : [...currentSites, siteId]
+      setHomeValue(newHome)
+      setSitesValue(newSites)
     } else {
-      newHome = newHome.filter(id => id !== siteId)
+      setHomeValue(currentHome.filter(id => id !== siteId))
     }
-
-    setSitesValue(newSites)
-    setHomeValue(newHome)
   }
 
   if (loading) {
