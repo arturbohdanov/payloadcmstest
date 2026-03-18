@@ -2,8 +2,6 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
-  serverExternalPackages: ['@libsql', 'better-sqlite3'],
   eslint: {
     ignoreDuringBuilds: true,
   },
